@@ -13,3 +13,14 @@ class Spidey{
 
             Spidey.all.push(this)
         }   }
+
+    makeACard =()=>{console.log(this)
+
+            return `
+                <h2 id="Spidey.id" data-id="${this.id}">${this.alias} ${this.surname} ${this.year}</h2>
+                <img src=${this.image} class="car-avatar" />
+                <button data-id="${this.id}" class="delete-btn"> DELETE THIS SPIDEY </button>
+                `
+        }
+    
+        
