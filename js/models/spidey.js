@@ -1,10 +1,15 @@
-class API
+console.log("Spidey.JS loaded")
 
-    {static fetchAllSpideys(){
+class Spidey{
 
-        fetch("http://localhost:3000/cars").then(response => response.json()).then(fetchedArray => fetchedArray.forEach
-            (spidey => {console.log(spidey)
-            const newSpidey = new Spidey(spidey)
-            newSpidey.renderSpidey(spidey)
-        }))
-    }}
+    static all = []
+
+    constructor({id, }){
+            this.id = id
+            this.image = year,
+            this.alias = alias,
+            this.surname = surname,
+            this.year = year
+
+            Spidey.all.push(this)
+        }   }
