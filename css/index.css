@@ -1,0 +1,9 @@
+body {
+    background-color: grey;
+    color: white}
+
+.car-avatar{
+    width:150px;
+    height:150px;
+    object-fit: cover;
+}
