@@ -6,14 +6,19 @@ API.fetchAllSpideys()
 
 const collectionDiv = document.querySelector("#gallery")
     collectionDiv.addEventListener("click", event =>{ event.preventDefault();
-    if(event.target.matches(".delete-btn")){
-    const id= event.target.dataset.id
-    console.log(id)
-    API.deleteSpidey(id)
+    // if(event.target.matches(".delete-btn")){
+    // const id= event.target.dataset.id
+    // console.log(id)
+    // API.deleteSpidey(id)
+    // }
+    if(event.target.matches(".comic-btn")){
+      const id = event.target.dataset.id
+      document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
+      API.fetchMyRecords(id)
     }
-})
+  })
 
-const newSpideyForm = document.querySelector(".add-spidey-form")
+  const newSpideyForm = document.querySelector(".add-spidey-form")
         newSpideyForm.addEventListener("submit", event =>{ event.preventDefault(); 
           const image = event.target.image.value
           const alias = event.target.alias.value

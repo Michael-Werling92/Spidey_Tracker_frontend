@@ -20,8 +20,6 @@ class Spidey{
         <h2 id="spidey.id" data-id="${this.id}">${this.alias} (${this.surname})</h2>
         <h3>Introduced In: ${this.year}</h3>
         <button data-id="${this.id}" class="comic-btn"> VIEW COMIC HISTORY </button>
-        <button data-id="${this.id}" class="add-comic-btn"> ADD NEW COMIC </button>
-        <button data-id="${this.id}" class="delete-btn"> DELETE THIS SPIDEY </button>
         <div class="card" event-id="${this.id}"></div>
         `
         }

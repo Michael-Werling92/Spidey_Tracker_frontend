@@ -14,7 +14,7 @@ class API {
         const deleteditem = document.getElementById(id)
                 
                 
-                fetch(`http://localhost:3000/Spideys/${id}`, {
+                fetch(`http://localhost:3000/spideys/${id}`, {
                     
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" }
