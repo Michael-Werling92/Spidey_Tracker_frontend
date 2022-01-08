@@ -34,7 +34,9 @@ class Spidey{
             cardDiv.innerHTML = this.makeACard()
         const collectionDiv = document.querySelector("#gallery")
         collectionDiv.append(cardDiv)
-    }
-}
-
-    
+        collectionDiv.addEventListener("click", event =>{ event.preventDefault(); 
+            if(event.target.matches(".delete-btn")){
+              const id = event.target.dataset.id
+              API.deleteCar(id)
+            }
+    })}}
