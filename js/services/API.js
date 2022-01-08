@@ -9,4 +9,18 @@ class API {
             newSpidey.renderSpidey(spidey);
         }))
     }
+
+    static deleteSpidey(id){
+        const deleteditem = document.getElementById(id)
+                
+                
+                fetch(`http://localhost:3000/Spideys/${id}`, {
+                    
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" }
+                    
+                })
+                .then(response => response.json())
+                .then(deleteditem.remove())
+        }
 }
