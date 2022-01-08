@@ -16,10 +16,14 @@ class Spidey{
 
     makeACard =()=>{console.log(this)
         return `
-            <h2><id="Spidey.id" data-id="${this.id}">${this.alias} ${this.surname} ${this.year}</h2>
-            <img src=${this.image} class="Spidey-avatar" />
-            <button data-id="${this.id}" class="delete-btn"> DELETE THIS SPIDEY </button>
-            `
+        <h2 id="car.id" data-id="${this.id}">${this.alias} (${this.surname})</h2>
+        <img src="${this.image}" class="spidey-avatar"/><br></br>
+        <h3>Introduced In: ${this.year}</h3>
+        <button data-id="${this.id}" class="comic-btn"> VIEW COMIC HISTORY </button>
+        <button data-id="${this.id}" class="add-comic-btn"> ADD NEW COMIC </button>
+        <button data-id="${this.id}" class="delete-btn"> DELETE THIS SPIDEY </button>
+        <div class="card" event-id="${this.id}"></div>
+        `
         }
     
     renderSpidey =(spidey)=> {
