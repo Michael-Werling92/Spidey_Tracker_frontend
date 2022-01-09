@@ -12,7 +12,6 @@ class Comic{
     makeACard =()=>{console.log(this)
 
         return `
-            Current Universe:
             <h3>Comic Series: ${this.name} </h3>
             <h4>Year Active: ${this.year} </h4>
             `
