@@ -14,7 +14,7 @@ const collectionDiv = document.querySelector("#gallery")
     if(event.target.matches(".comic-btn")){
       const id = event.target.dataset.id
       document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
-      API.fetchMyRecords(id)
+      API.fetchMyComics(id)
     }
   })
 
