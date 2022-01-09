@@ -7,7 +7,7 @@ class Comic{
         this.name = name,
         this.year = year,
         this.spidey_id = spidey_id,
-        Record.all.push(this)
+        Comic.all.push(this)
     }
     makeACard =()=>{console.log(this)
 
@@ -25,5 +25,6 @@ class Comic{
             cardDiv.id = comic.id
             cardDiv.innerHTML = this.makeACard()
         const collectionDiv = document.querySelector(`.card[event-id="${comic.spidey_id}"]`)
-        collectionDiv.append(cardDiv)    
+        collectionDiv.append(cardDiv)
+    }    
 }

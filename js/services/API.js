@@ -28,12 +28,11 @@ class API {
 
             fetch(`http://localhost:3000/spideys/${id}/comics`).then(response => response.json())
             .then(fetchedArray => { console.log(fetchedArray);
-                const collectionDiv = document.querySelector("#file-cabinet")
+                const collectionDiv = document.querySelector(`.card[event-id="${id}"]`)
                     collectionDiv.innerHTML = ""
-              fetchedArray.forEach(record => {  console.log(record);
-                const newRecord = new Record(record)
-                newRecord.renderRecord(record)
-                window.scrollTo(0,0)
+              fetchedArray.forEach(comic => {  console.log(comic);
+                const newComic = new Comic(comic)
+                newComic.renderComic(comic)
             })})
         }
 }

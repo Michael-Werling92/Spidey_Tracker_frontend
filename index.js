@@ -6,11 +6,11 @@ API.fetchAllSpideys()
 
 const collectionDiv = document.querySelector("#gallery")
     collectionDiv.addEventListener("click", event =>{ event.preventDefault();
-    // if(event.target.matches(".delete-btn")){
-    // const id= event.target.dataset.id
-    // console.log(id)
-    // API.deleteSpidey(id)
-    // }
+    if(event.target.matches(".delete-btn")){
+      const id= event.target.dataset.id
+      console.log(id)
+      API.deleteSpidey(id)
+    }
     if(event.target.matches(".comic-btn")){
       const id = event.target.dataset.id
       document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
