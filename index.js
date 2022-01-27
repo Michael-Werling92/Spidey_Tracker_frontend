@@ -47,7 +47,7 @@ const collectionDiv = document.querySelector("#gallery")
   })
 
   const form = document.getElementById('form');
-  const term = document.getElementById('search');
+  const term= () => document.getElementById('search');
   const cardDiv = document.querySelector("#gallery");
 
   form.addEventListener('submit', (event)=> {
@@ -56,10 +56,11 @@ const collectionDiv = document.querySelector("#gallery")
   })
   
   const search = async (event) => {
-    const response = await fetch("http://localhost:3000/spideys?q=" + term.value)
+    const response = await fetch("http://localhost:3000/spideys?q=" + term().value)
     console.log(response)
     cardDiv.innerHTML= " "
     filteredArray = await response.json()
+    term().value = " "
     filteredArray.forEach(spidey => {
       console.log(spidey);
       const newSpidey = new Spidey(spidey);
