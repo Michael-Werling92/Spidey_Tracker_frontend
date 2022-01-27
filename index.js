@@ -26,22 +26,42 @@ const collectionDiv = document.querySelector("#gallery")
           const year = event.target.year.value
           
             const submit = event.target.submit
-            console.log("Spidey Suibmitted", submit)
+            console.log("Spidey Submitted", submit)
             
             fetch("http://localhost:3000/spideys", {
         
-                method: "POST",
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({
+              method: "POST",
+              headers: { "Content-Type": "application/json"},
+              body: JSON.stringify({
     
-                      "image": image,
-                      "alias": alias,
-                      "surname": surname,
-                      "year": year,
-                }
+                    "image": image,
+                    "alias": alias,
+                    "surname": surname,
+                    "year": year,
+              }
               ,)})
               .then(response => response.json())
               .then(thingsPosted => console.log("Info:", thingsPosted))
               event.target.reset()
               location.reload()
-      })      
+  })
+
+  const form = document.getElementById('form');
+  const term = document.getElementById('search');
+  const cardDiv = document.querySelector("#gallery");
+
+  form.addEventListener('submit', (event)=> {
+    event.preventDefault();
+    search(event)
+  })
+  
+  const search = async (event) => {
+    const response = await fetch("http://localhost:3000/spideys?q=" + term.value)
+    console.log(response)
+    cardDiv.innerHTML= " "
+    filteredArray = await response.json()
+    filteredArray.forEach(spidey => {
+      console.log(spidey);
+      const newSpidey = new Spidey(spidey);
+      newSpidey.renderSpidey(spidey);
+  })}

@@ -24,7 +24,7 @@ class Spidey{
         <div class="card" event-id="${this.id}"></div>
         `
         }
-    
+
     renderSpidey =(spidey)=> {
         const cardDiv = document.createElement("div")
         cardDiv.classList.add("card")
