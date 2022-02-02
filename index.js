@@ -4,21 +4,8 @@ document.addEventListener("DOMContentLoaded", function(){ console.log("DOM IS LI
 
 API.fetchAllSpideys()
 
-const collectionDiv = document.querySelector("#gallery")
-    collectionDiv.addEventListener("click", event =>{ event.preventDefault();
-    if(event.target.matches(".delete-btn")){
-      const id= event.target.dataset.id
-      console.log(id)
-      API.deleteSpidey(id)
-    }
-    if(event.target.matches(".comic-btn")){
-      const id = event.target.dataset.id
-      document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
-      API.fetchMyComics(id)
-    }
-  })
-
-  const newSpideyForm = document.querySelector(".add-spidey-form")
+const newSpideyForm = document.querySelector(".add-spidey-form")
+  console.log(newSpideyForm)
         newSpideyForm.addEventListener("submit", event =>{ event.preventDefault(); 
           const image = event.target.image.value
           const alias = event.target.alias.value
@@ -41,28 +28,100 @@ const collectionDiv = document.querySelector("#gallery")
               }
               ,)})
               .then(response => response.json())
-              .then(thingsPosted => console.log("Info:", thingsPosted))
-              event.target.reset()
-              location.reload()
+              .then(spideys => {
+                const newSpidey = new Spidey(spideys)
+                newSpidey.renderSpidey()
+              })
+              
+  })
+
+
+const collectionDiv = document.querySelector("#gallery")
+    collectionDiv.addEventListener("click", event =>{ event.preventDefault();
+    if(event.target.matches(".delete-btn")){
+      const id= event.target.dataset.id
+      console.log(id)
+      API.deleteSpidey(id)
+    }
+    if(event.target.matches(".comic-btn")){
+      const id = event.target.dataset.id
+      document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
+      API.fetchMyComics(id)
+    }
+  if(event.target.matches(".add-comic-btn")){
+      const id = event.target.dataset.id
+      document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
+      const cardEditing = document.querySelector(`.card[event-id="${id}"]`)
+      console.log(cardEditing)
+      const addComicForm = document.createElement("form")
+      addComicForm.innerHTML =`
+        <form>
+
+        <br>
+        <button class="close-button">✖️CLOSE</button>
+        <br>
+
+        <br><br>
+        <h2>Add New Comic:</h2>
+        <form class="add-comic-form">
+
+        <br />
+        <h4>New Comic:</h4>
+        <input
+        type="text"
+        name="comic"
+        value=""
+        placeholder=""
+        class="input-comic-name"
+        />
+
+        <br />
+        <h4>Year of Appearance:</h4>
+        <input
+        type="text"
+        name="year"
+        value=""
+        placeholder=""
+        class="input-comic-year"
+        />
+
+        <br />
+        <input 
+        type="submit"
+        name="submit"
+        value="Add New Comic"
+        class="submit-button"
+        />
+        </form>
+        `
+        cardEditing.append(addComicForm)
+        addComicForm.addEventListener("click", (event)=>{  event.preventDefault();
+          if(event.target.matches(".submit-button")){
+            API.addComic(addComicForm, id)
+        const closeButton = addComicForm.querySelector(".close-button")
+          closeButton.addEventListener("click", (event)=>{
+            addComicForm.remove()
+            })
+  }
   })
 
   const form = document.getElementById('form');
   const term= () => document.getElementById('search');
-  const cardDiv = document.querySelector("#gallery");
 
   form.addEventListener('submit', (event)=> {
     event.preventDefault();
     search(event)
   })
   
-  const search = async (event) => {
+  const search = async () => {
     const response = await fetch("http://localhost:3000/spideys?q=" + term().value)
     console.log(response)
-    cardDiv.innerHTML= " "
+    collectionDiv.innerHTML= " "
     filteredArray = await response.json()
-    term().value = " "
+    form.innerHTML = " "
     filteredArray.forEach(spidey => {
       console.log(spidey);
       const newSpidey = new Spidey(spidey);
       newSpidey.renderSpidey(spidey);
   })}
+}})

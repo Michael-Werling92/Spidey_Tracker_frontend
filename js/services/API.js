@@ -23,8 +23,7 @@ class API {
                     headers: { "Content-Type": "application/json" }
                     
                 })
-                .then(response => response.json())
-                .then(deleteditem.remove())
+                .then(response => deleteditem.remove())
         }
     
     static fetchMyComics(id){
@@ -40,4 +39,23 @@ class API {
                 newComic.renderComic(comic)
             })})
         }
+    
+    static addComic(addComicForm, id){
+        let updatedName = addComicForm.querySelector(".input-comic-name").value
+            console.log(updatedName)
+        let updatedYear = addComicForm.querySelector(".input-comic-year").value
+            console.log(updatedYear)
+                const bodyObj = {
+                    "name": updatedName,
+                    "mileage": updatedYear,
+                    "spidey_id": id
+                }
+                fetch(`http://localhost:3000/spideys/${id}/comics`,{
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(bodyObj),
+                })
+                    .then(response => response.json())
+                    .then(theThingWePosted => console.log("Info:", theThingWePosted))
+    }
 }
