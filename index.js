@@ -40,7 +40,7 @@ const term= () => document.getElementById('search');
 
   form.addEventListener('submit', (event)=> {
     event.preventDefault();
-    search(event)
+    search()
   })
   
   const search = async () => {
@@ -48,7 +48,8 @@ const term= () => document.getElementById('search');
     console.log(response)
     collectionDiv.innerHTML= " "
     filteredArray = await response.json()
-    filteredArray.forEach(spidey => {
+    filteredArray = await filteredArray.sort((a,b) => (b.year > a.year) ? -1 : ((a.year > b.year) ? 1 : 0))
+    .forEach(spidey => {
       console.log(spidey);
       const newSpidey = new Spidey(spidey);
       newSpidey.renderSpidey();
@@ -121,6 +122,6 @@ const term= () => document.getElementById('search');
             closeButton.addEventListener("click", (event)=>{
               addComicForm.remove()
             })
-          })
+        })
   }
 })
