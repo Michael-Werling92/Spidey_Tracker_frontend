@@ -5,26 +5,25 @@ class API {
 
         fetch("http://localhost:3000/spideys")
         .then(response => response.json())
-            .then(data => {
-                data.sort((a,b) => (b.year > a.year) ? -1 : ((a.year > b.year) ? 1 : 0)).forEach
-                    (spideys => {
-                        const newSpidey = new Spidey(spideys)
-                        newSpidey.renderSpidey()
+        .then(data => {
+            data.sort((a,b) => (b.year > a.year) ? -1 : ((a.year > b.year) ? 1 : 0))
+            .forEach(spideys => {
+                const newSpidey = new Spidey(spideys)
+                newSpidey.renderSpidey()
+            })
         })
-    })}
+    }
 
     static deleteSpidey(id){
         const deleteditem = document.getElementById(id)
-                
-                
-                fetch(`http://localhost:3000/spideys/${id}`, {
+            fetch(`http://localhost:3000/spideys/${id}`, {
                     
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" }
                     
-                })
-                .then(response => deleteditem.remove())
-        }
+            })
+            .then(response => deleteditem.remove())
+    }
     
     static fetchMyComics(id){
 
@@ -37,8 +36,10 @@ class API {
             data.forEach(comic => {  console.log(comic);
                 const newComic = new Comic(comic)
                 newComic.renderComic()
-            })})
-        }
+            })
+        })
+        
+    }
     
     static addComic(addComicForm, id){
         let updatedName = addComicForm.querySelector(".input-comic-name").value

@@ -5,14 +5,14 @@ class Spidey{
     static all = []
 
     constructor({id, image, alias, surname, year }){
-            this.id = id
-            this.image = image,
-            this.alias = alias,
-            this.surname = surname,
-            this.year = year
+        this.id = id
+        this.image = image,
+        this.alias = alias,
+        this.surname = surname,
+        this.year = year
 
-            Spidey.all.push(this)
-        }
+        Spidey.all.push(this)
+    }
 
     makeACard =()=>{console.log(this)
         return `
@@ -22,9 +22,10 @@ class Spidey{
         <button data-id="${this.id}" class="comic-btn"> VIEW COMIC HISTORY </button>
         <button data-id="${this.id}" class="add-comic-btn"> ADD COMIC </button>
         <button data-id="${this.id}" class="delete-btn"> DELETE SPIDEY </button>
+        <br>
         <div class="card" event-id="${this.id}"></div>
         `
-        }
+    }
 
     renderSpidey =()=> {
         const cardDiv = document.createElement("div")
@@ -34,5 +35,6 @@ class Spidey{
             cardDiv.innerHTML = this.makeACard()
         const collectionDiv = document.querySelector("#gallery")
         collectionDiv.append(cardDiv)
-        }
     }
+}
+

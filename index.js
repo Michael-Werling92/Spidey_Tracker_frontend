@@ -1,4 +1,4 @@
-document.addEventListener("click", (event)=>{ console.log("You Clicked on", event.target) } )
+document.addEventListener("click", (event)=>{ console.log("You Clicked on", event.target) })
 
 document.addEventListener("DOMContentLoaded", function(){ console.log("DOM IS LISTENING") })
 
@@ -25,14 +25,14 @@ const newSpideyForm = document.querySelector(".add-spidey-form")
               "alias": alias,
               "surname": surname,
               "year": year,
-              }
-              ,)})
-              .then(response => response.json())
-              .then(spideys => {
-                const newSpidey = new Spidey(spideys)
-                newSpidey.renderSpidey()
-              })
-})
+            },)
+          })
+            .then(response => response.json())
+            .then(spideys => {
+              const newSpidey = new Spidey(spideys)
+              newSpidey.renderSpidey()
+            })
+      })
 
 const collectionDiv = document.querySelector("#gallery")
 const form = document.getElementById('form');
@@ -52,9 +52,10 @@ const term= () => document.getElementById('search');
       console.log(spidey);
       const newSpidey = new Spidey(spidey);
       newSpidey.renderSpidey();
-  })}
+    })
+  }
 
-    collectionDiv.addEventListener("click", event =>{ event.preventDefault();
+  collectionDiv.addEventListener("click", event =>{ event.preventDefault();
     if(event.target.matches(".delete-btn")){
       const id= event.target.dataset.id
       console.log(id)
@@ -115,8 +116,11 @@ const term= () => document.getElementById('search');
         addComicForm.addEventListener("click", (event)=>{  event.preventDefault();
           if(event.target.matches(".submit-button")){
             API.addComic(addComicForm, id)
-        const closeButton = addComicForm.querySelector(".close-button")
-          closeButton.addEventListener("click", (event)=>{
-            addComicForm.remove()
-            })}
-    })}})
+          }
+          const closeButton = addComicForm.querySelector(".close-button")
+            closeButton.addEventListener("click", (event)=>{
+              addComicForm.remove()
+            })
+          })
+  }
+})
