@@ -6,25 +6,25 @@ API.fetchAllSpideys()
 
 const newSpideyForm = document.querySelector(".add-spidey-form")
   console.log(newSpideyForm)
-        newSpideyForm.addEventListener("submit", event =>{ event.preventDefault(); 
-          const image = event.target.image.value
-          const alias = event.target.alias.value
-          const surname = event.target.surname.value
-          const year = event.target.year.value
+    newSpideyForm.addEventListener("submit", event =>{ event.preventDefault(); 
+      const image = event.target.image.value
+      const alias = event.target.alias.value
+      const surname = event.target.surname.value
+      const year = event.target.year.value
           
-            const submit = event.target.submit
-            console.log("Spidey Submitted", submit)
+        const submit = event.target.submit
+        console.log("Spidey Submitted", submit)
             
-            fetch("http://localhost:3000/spideys", {
+          fetch("http://localhost:3000/spideys", {
         
-              method: "POST",
-              headers: { "Content-Type": "application/json"},
-              body: JSON.stringify({
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({
     
-                    "image": image,
-                    "alias": alias,
-                    "surname": surname,
-                    "year": year,
+              "image": image,
+              "alias": alias,
+              "surname": surname,
+              "year": year,
               }
               ,)})
               .then(response => response.json())
@@ -32,11 +32,28 @@ const newSpideyForm = document.querySelector(".add-spidey-form")
                 const newSpidey = new Spidey(spideys)
                 newSpidey.renderSpidey()
               })
-              
-  })
-
+})
 
 const collectionDiv = document.querySelector("#gallery")
+const form = document.getElementById('form');
+const term= () => document.getElementById('search');
+
+  form.addEventListener('submit', (event)=> {
+    event.preventDefault();
+    search(event)
+  })
+  
+  const search = async () => {
+    const response = await fetch("http://localhost:3000/spideys?q=" + term().value)
+    console.log(response)
+    collectionDiv.innerHTML= " "
+    filteredArray = await response.json()
+    filteredArray.forEach(spidey => {
+      console.log(spidey);
+      const newSpidey = new Spidey(spidey);
+      newSpidey.renderSpidey();
+  })}
+
     collectionDiv.addEventListener("click", event =>{ event.preventDefault();
     if(event.target.matches(".delete-btn")){
       const id= event.target.dataset.id
@@ -48,7 +65,7 @@ const collectionDiv = document.querySelector("#gallery")
       document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
       API.fetchMyComics(id)
     }
-  if(event.target.matches(".add-comic-btn")){
+    if(event.target.matches(".add-comic-btn")){
       const id = event.target.dataset.id
       document.querySelector(`.card[event-id="${id}"]`).innerHTML = " ";
       const cardEditing = document.querySelector(`.card[event-id="${id}"]`)
@@ -101,27 +118,5 @@ const collectionDiv = document.querySelector("#gallery")
         const closeButton = addComicForm.querySelector(".close-button")
           closeButton.addEventListener("click", (event)=>{
             addComicForm.remove()
-            })
-  }
-  })
-
-  const form = document.getElementById('form');
-  const term= () => document.getElementById('search');
-
-  form.addEventListener('submit', (event)=> {
-    event.preventDefault();
-    search(event)
-  })
-  
-  const search = async () => {
-    const response = await fetch("http://localhost:3000/spideys?q=" + term().value)
-    console.log(response)
-    collectionDiv.innerHTML= " "
-    filteredArray = await response.json()
-    form.innerHTML = " "
-    filteredArray.forEach(spidey => {
-      console.log(spidey);
-      const newSpidey = new Spidey(spidey);
-      newSpidey.renderSpidey(spidey);
-  })}
-}})
+            })}
+    })}})

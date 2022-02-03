@@ -9,7 +9,7 @@ class API {
                 data.sort((a,b) => (b.year > a.year) ? -1 : ((a.year > b.year) ? 1 : 0)).forEach
                     (spideys => {
                         const newSpidey = new Spidey(spideys)
-                        newSpidey.renderSpidey(spideys)
+                        newSpidey.renderSpidey()
         })
     })}
 
@@ -36,7 +36,7 @@ class API {
                 collectionDiv.innerHTML = ""
             data.forEach(comic => {  console.log(comic);
                 const newComic = new Comic(comic)
-                newComic.renderComic(comic)
+                newComic.renderComic()
             })})
         }
     
@@ -47,7 +47,7 @@ class API {
             console.log(updatedYear)
                 const bodyObj = {
                     "name": updatedName,
-                    "mileage": updatedYear,
+                    "year": updatedYear,
                     "spidey_id": id
                 }
                 fetch(`http://localhost:3000/spideys/${id}/comics`,{

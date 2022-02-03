@@ -17,13 +17,13 @@ class Comic{
             `
         }
 
-    renderComic=(comic)=> {
+    renderComic=()=> {
         const cardDiv = document.createElement("div")
         cardDiv.classList.add("card")
-            cardDiv.setAttribute("data-id", comic.id)
-            cardDiv.id = comic.id
+            cardDiv.setAttribute("data-id", this.id)
+            cardDiv.id = this.id
             cardDiv.innerHTML = this.makeACard()
-        const collectionDiv = document.querySelector(`.card[event-id="${comic.spidey_id}"]`)
+        const collectionDiv = document.querySelector(`.card[event-id="${this.spidey_id}"]`)
         collectionDiv.append(cardDiv)
     }    
 }
