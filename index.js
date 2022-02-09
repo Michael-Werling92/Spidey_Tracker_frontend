@@ -34,9 +34,9 @@ const newSpideyForm = document.querySelector(".add-spidey-form")
             })
       })
 
-const collectionDiv = document.querySelector("#gallery")
-const form = document.getElementById('form');
-const term= () => document.getElementById('search');
+  const collectionDiv = document.querySelector("#gallery")
+  const form = document.getElementById('form');
+  const term= () => document.getElementById('search');
 
   form.addEventListener('submit', (event)=> {
     event.preventDefault();
@@ -123,5 +123,5 @@ const term= () => document.getElementById('search');
               addComicForm.remove()
             })
         })
-  }
-})
+    }
+  })

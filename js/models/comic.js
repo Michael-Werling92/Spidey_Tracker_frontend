@@ -1,4 +1,4 @@
-console.log ("Record.JS loaded")
+console.log ("Comic.JS loaded")
 
 class Comic{
     static all = []
